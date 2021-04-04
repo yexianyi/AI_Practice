@@ -9,7 +9,7 @@ def stand_demo():
     data = transfer.fit_transform(data[['milage', 'Liters', 'Consumtime']])
     print("Standardization result: \n", data)
     print("Mean of each figure: \n", transfer.mean_)
-    print("Variance of each figure: \n", transfer.mean_)
+    print("Variance of each figure: \n", transfer.var_)
 
     return None
 
