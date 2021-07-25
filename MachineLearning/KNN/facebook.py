@@ -35,7 +35,7 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25)
 sd = StandardScaler()
 # # 3.2 调用fit_transform要对测试集和训练集的目标值做标准化
 x_train = sd.fit_transform(x_train)
-x_test = sd.fit_transform(x_test)
+x_test = sd.transform(x_test)
 
 # 4.机器学习--knn+cv
 # 4.1 实例化一个估计器
