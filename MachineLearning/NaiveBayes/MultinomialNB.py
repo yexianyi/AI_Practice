@@ -83,8 +83,8 @@ bwebster@pages.com
 
 # 将文本数据转换为词频矩阵  
 vectorizer = CountVectorizer()  
-X = vectorizer.fit_transform(newsgroups.data)  
-y = newsgroups.target  
+X = vectorizer.fit_transform(newsgroups.data)   # 特征数据  
+y = newsgroups.target  # 目标类别  
   
 # 划分训练集和测试集  
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)  
