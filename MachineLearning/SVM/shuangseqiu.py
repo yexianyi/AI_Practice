@@ -43,6 +43,8 @@ y_pred = best_model.predict(x_test)
 accuracy = accuracy_score(y_test, y_pred)  
 print(f'Accuracy: {accuracy:.3f}')
 
+y_pred = best_model.predict([[4, 8, 25, 30, 32, 33]])
+print(y_pred)
 
 # # 训练模型
 # clf.fit(x_train, y_train)  
