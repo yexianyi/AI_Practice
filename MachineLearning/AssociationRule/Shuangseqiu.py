@@ -21,13 +21,14 @@ for index, row in df.iterrows():
     data[index][row[11]] = 1
     data[index][row[12]] = 1
     data[index][row[13]] = 1
+    data[index][row[14]] = 1
 
 # print(data)
 
 df = pd.DataFrame(data, columns=['0', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R7', 'R8', 'R9', 
                                  'R10', 'R11', 'R12', 'R13', 'R14', 'R15', 'R16', 'R17', 'R18', 'R19',
                                  'R20', 'R21', 'R22', 'R23', 'R24', 'R25', 'R66', 'R27', 'R28', 'R29',
-                                 'R30', 'R31', 'R32', 'R33']) 
+                                 'R30', 'R31', 'R32', 'R33', 'B1']) 
 
 # 求出频繁项集
 frequent_itemsets = apriori(df, min_support=0.01, use_colnames=True)
