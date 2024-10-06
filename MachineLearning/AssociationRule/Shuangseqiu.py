@@ -16,14 +16,14 @@ def find_XY(df, x, y):
 df = pd.read_csv("AssociationRule\shuangseqiu.csv")
 
 
-# 求R1~R33作为第一个被抓取到红球的频率
-red_values = [f'R{i+1}' for i in range(33)]  
-count_values = [0] * 33  
-data = {'Red': red_values, 'Count': count_values} 
-red_fre_stat = pd.DataFrame(data) 
-red_counts = df['O1'].value_counts(ascending=True)  
-print("======第一个被抓取到红球的频率(从小到大):======")
-print(red_counts)
+# # 求R1~R33作为第一个被抓取到红球的频率
+# red_values = [f'R{i+1}' for i in range(33)]  
+# count_values = [0] * 33  
+# data = {'Red': red_values, 'Count': count_values} 
+# red_fre_stat = pd.DataFrame(data) 
+# red_counts = df['O1'].value_counts(ascending=True)  
+# print("======第一个被抓取到红球的频率(从小到大):======")
+# print(red_counts)
 
 
 rows_count = df.shape[0]
@@ -56,6 +56,11 @@ frequent_itemsets = frequent_itemsets.sort_values(by='support', ascending=False)
 frequent_itemsets['Rank'] = frequent_itemsets['support'].rank(method='min', ascending=False)
 print(frequent_itemsets)
 
+rows_of_top_10_single_num = frequent_itemsets.nlargest(10, 'support')  
+print("======支持度最高的前10个数字, 作为初始的红球预选号码======")
+print(rows_of_top_10_single_num)
+
+
 red_values = [f'R{i+1}' for i in range(33)]  
 count_values = [0] * 33  
 data = {'Red': red_values, 'Count': count_values} 
@@ -71,9 +76,7 @@ print("======红色球在频繁项集中出现的频次：======")
 print(red_fre_stat.sort_values(by=['Count'], ascending=False) )
 
 
-rows_of_top_10_single_num = frequent_itemsets.nlargest(10, 'support')  
-# print("======频繁出现的前10个数字, 作为初始的红球预选号码======")
-# print(rows_of_top_10_single_num)
+
 
 # 求出关联规则
 # 默认用置信度来算，阈值是0.8，小于0.8的不要，此处修改为lift，小于lift为1的删除。
@@ -120,15 +123,15 @@ blue_counts = blue_df['Blue'].value_counts()
 print("======候选蓝球出现频次：======")
 print(blue_counts)
 
-# 查看一下支持度和置信度的关系,
-# print("======支持度和置信度的关系======\n")
-# plt.scatter(rules.support, rules.confidence)
-# plt.title("Association Rules")
-# plt.xlabel("support")
-# plt.ylabel("confidence")
+#查看一下支持度和置信度的关系,
+print("======支持度和置信度的关系======\n")
+plt.scatter(rules.support, rules.confidence)
+plt.title("Association Rules")
+plt.xlabel("support")
+plt.ylabel("confidence")
 
-# # 自定义悬停时显示的信息  
-# cursor = mplcursors.cursor(hover=True)  
-# cursor.connect("add", lambda sel: sel.annotation.set_text(find_XY(rules, sel.target[0], sel.target[1])))
+# 自定义悬停时显示的信息  
+cursor = mplcursors.cursor(hover=True)  
+cursor.connect("add", lambda sel: sel.annotation.set_text(find_XY(rules, sel.target[0], sel.target[1])))
 
-# plt.show()
+plt.show()
