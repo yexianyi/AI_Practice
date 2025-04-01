@@ -14,7 +14,7 @@ def find_XY(df, x, y):
     return rows_as_str
 
 
-df = pd.read_csv("AssociationRule\\daletou.csv")
+df = pd.read_csv("daletou.csv")
 rows_count = df.shape[0]
 
 # 初始化用于求频繁项集的数据表
@@ -49,7 +49,8 @@ print(frequent_itemsets)
 
 # 求出关联规则
 # 默认用置信度来算，阈值是0.8，小于0.8的不要，此处修改为lift，小于lift为1的删除。
-rules = association_rules(frequent_itemsets, metric="lift", min_threshold=1)
+num_itemsets = len(frequent_itemsets)
+rules = association_rules(frequent_itemsets, num_itemsets, metric="lift", min_threshold=1)
 # rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.8)
 print("======关联规则======\n")
 sorted_rules = rules.sort_values(by=['confidence', 'support', 'antecedents', 'consequents'], ascending=False)  

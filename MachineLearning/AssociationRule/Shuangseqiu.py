@@ -13,7 +13,7 @@ def find_XY(df, x, y):
     rows_as_str = filtered_df[['support', 'confidence', 'antecedents', 'consequents']].to_string(index = False)
     return rows_as_str
 
-df = pd.read_csv("AssociationRule\shuangseqiu.csv")
+df = pd.read_csv("shuangseqiu.csv")
 
 
 # # 求R1~R33作为第一个被抓取到红球的频率
@@ -80,7 +80,7 @@ print(red_fre_stat.sort_values(by=['Count'], ascending=False) )
 
 # 求出关联规则
 # 默认用置信度来算，阈值是0.8，小于0.8的不要，此处修改为lift，小于lift为1的删除。
-rules = association_rules(frequent_itemsets, metric="lift", min_threshold=1)
+rules = association_rules(frequent_itemsets, len(frequent_itemsets), metric="lift", min_threshold=1)
 print("======关联规则======")
 sorted_rules = rules.sort_values(by=['confidence', 'support', 'antecedents', 'consequents'], ascending=False)  
 selected_columns = sorted_rules[['confidence', 'support', 'antecedents', 'consequents']]  
