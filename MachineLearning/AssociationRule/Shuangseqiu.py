@@ -13,8 +13,16 @@ def find_XY(df, x, y):
     rows_as_str = filtered_df[['support', 'confidence', 'antecedents', 'consequents']].to_string(index = False)
     return rows_as_str
 
-df = pd.read_csv("shuangseqiu.csv")
 
+# 读取整个文件以获取总行数
+with open("shuangseqiu.csv", 'r', encoding='utf-8') as f:
+    total_lines = sum(1 for _ in f)
+
+# 计算需要跳过的行数
+skip_rows = total_lines - 50
+
+# 读取最后 50 行
+df = pd.read_csv("shuangseqiu.csv", skiprows=range(1, skip_rows + 1))
 
 # # 求R1~R33作为第一个被抓取到红球的频率
 # red_values = [f'R{i+1}' for i in range(33)]  
