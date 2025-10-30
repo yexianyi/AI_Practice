@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d0" for="node" attr.name="label" attr.type="string"/>
+  <key id="d1" for="node" attr.name="id" attr.type="string"/>
+  <key id="d2" for="node" attr.name="name" attr.type="string"/>
+  <key id="d3" for="node" attr.name="location" attr.type="string"/>
+  <key id="d4" for="node" attr.name="model" attr.type="string"/>
+  <key id="d5" for="node" attr.name="lifespan" attr.type="string"/>
+  <key id="d6" for="node" attr.name="supplier" attr.type="string"/>
+  <key id="d7" for="node" attr.name="material" attr.type="string"/>
+  <key id="d8" for="node" attr.name="power" attr.type="string"/>
+  <key id="d9" for="node" attr.name="severity" attr.type="string"/>
+  <key id="d10" for="node" attr.name="description" attr.type="string"/>
+  <key id="d11" for="node" attr.name="estimated_time" attr.type="string"/>
+  <key id="d12" for="node" attr.name="required_tool" attr.type="string"/>
+  <key id="d13" for="edge" attr.name="label" attr.type="string"/>
+  
+  <graph id="G" edgedefault="directed">
+    
+    <node id="n0">
+      <data key="d0">Device</data>
+      <data key="d1">D001</data>
+      <data key="d2">CNC-M500</data>
+      <data key="d3">Line-A</data>
+      <data key="d4">M500-Pro</data>
+    </node>
+    <node id="n1">
+      <data key="d0">Device</data>
+      <data key="d1">D002</data>
+      <data key="d2">Robot-KUKA-KR40</data>
+      <data key="d3">Line-B</data>
+      <data key="d4">KR40-V2</data>
+    </node>
+    
+    <node id="n2">
+      <data key="d0">Component</data>
+      <data key="d1">C001</data>
+      <data key="d2">Spindle-Unit-001</data>
+      <data key="d5">5000h</data>
+      <data key="d6">Siemens</data>
+    </node>
+    <node id="n3">
+      <data key="d0">Component</data>
+      <data key="d1">C002</data>
+      <data key="d2">Bearing-Group-A</data>
+      <data key="d7">Steel</data>
+    </node>
+    <node id="n4">
+      <data key="d0">Component</data>
+      <data key="d1">C003</data>
+      <data key="d2">Motor-Unit-A</data>
+      <data key="d8">15kW</data>
+    </node>
+    
+    <node id="n5">
+      <data key="d0">FaultMode</data>
+      <data key="d1">F001</data>
+      <data key="d2">Overheating</data>
+      <data key="d9">High</data>
+      <data key="d10">Temperature exceeds safety threshold.</data>
+    </node>
+    <node id="n6">
+      <data key="d0">FaultMode</data>
+      <data key="d1">F002</data>
+      <data key="d2">AbnormalVibration</data>
+      <data key="d9">Medium</data>
+      <data key="d10">Vibration values exceed ISO standard.</data>
+    </node>
+    <node id="n7">
+      <data key="d0">FaultMode</data>
+      <data key="d1">F003</data>
+      <data key="d2">PowerLoss</data>
+      <data key="d9">High</data>
+      <data key="d10">Motor fails to achieve rated power.</data>
+    </node>
+    
+    <node id="n8">
+      <data key="d0">RepairAction</data>
+      <data key="d1">R001</data>
+      <data key="d2">CheckCoolantLevel</data>
+      <data key="d11">30min</data>
+    </node>
+    <node id="n9">
+      <data key="d0">RepairAction</data>
+      <data key="d1">R002</data>
+      <data key="d2">ReplaceBearing</data>
+      <data key="d11">2h</data>
+      <data key="d12">Puller-T80</data>
+    </node>
+    <node id="n10">
+      <data key="d0">RepairAction</data>
+      <data key="d1">R003</data>
+      <data key="d2">InspectWiring</data>
+      <data key="d11">1h</data>
+    </node>
+    
+    <edge source="n0" target="n2">
+      <data key="d13">HAS_COMPONENT</data>
+    </edge>
+    <edge source="n0" target="n3">
+      <data key="d13">HAS_COMPONENT</data>
+    </edge>
+    <edge source="n1" target="n4">
+      <data key="d13">HAS_COMPONENT</data>
+    </edge>
+    
+    <edge source="n2" target="n5">
+      <data key="d13">CAN_CAUSE</data>
+    </edge>
+    <edge source="n3" target="n6">
+      <data key="d13">CAN_CAUSE</data>
+    </edge>
+    <edge source="n4" target="n7">
+      <data key="d13">CAN_CAUSE</data>
+    </edge>
+
+    <edge source="n5" target="n8">
+      <data key="d13">CAN_BE_SOLVED_BY</data>
+    </edge>
+    <edge source="n6" target="n9">
+      <data key="d13">CAN_BE_SOLVED_BY</data>
+    </edge>
+    <edge source="n7" target="n10">
+      <data key="d13">CAN_BE_SOLVED_BY</data>
+    </edge>
+    
+  </graph>
+</graphml>
